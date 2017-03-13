@@ -1,0 +1,19 @@
+runtime: python27
+api_version: 1
+threadsafe: true
+libraries:
+- name: ssl
+  version: latest
+
+handlers:
+- url: /bower_components
+  static_dir: bower_components
+  secure: always
+- url: /dynamic-meta-app.html
+  upload: dynamic-meta-app.html
+  static_files: dynamic-meta-app.html
+  secure: always
+- url: /.*
+  upload: index.html
+  static_files: index.html
+  secure: always

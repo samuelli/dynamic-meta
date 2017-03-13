@@ -1,0 +1,40 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="dynamic-meta-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Dynamic tags</h2>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'dynamic-meta-app',
+
+      properties: {
+      },
+
+      created: function() {
+        this._setMeta('og:title', 'The Rock');
+        this._setMeta('og:type', 'video.movie');
+        this._setMeta('og:url', 'http://www.imdb.com/title/tt0117500/');
+        this._setMeta('og:image', 'http://ia.media-imdb.com/images/rock.jpg');
+      },
+
+      _setMeta: function(property, content) {
+        var element = document.head.querySelector('meta[property="' + property + '"]');
+        if (!element) {
+          element = document.createElement('meta');
+          element.setAttribute('property', property);
+          document.head.appendChild(element);
+        }
+        element.setAttribute('content', content);
+      },
+
+    });
+  </script>
+</dom-module>
